@@ -14,6 +14,11 @@ public class Queue
 		
 	}
 	
+	public void destroyStack() // optional
+	{
+		
+	}
+	
 	/*
 	 * list's head node = queue's front
 	 * list's tail node = queue's end
@@ -32,23 +37,17 @@ public class Queue
 	
 	public Currency peekFront()
 	{
-		Currency st = new Dollar();
-		return st;
+		return list.getCurrency(0);
 	}
 	
 	public Currency peekRear()
 	{
-		Currency st = new Dollar();
-		return st;
+		return list.getCurrency(list.getCount() - 1);
 	}
 	
 	public String printStack()
 	{
-		return "";
+		return list.printList();
 	}
 	
-	public void destroyStack() // optional
-	{
-		
-	}
 }

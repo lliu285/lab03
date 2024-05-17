@@ -50,8 +50,6 @@ public class SinglyLinkedList
 	{
 		LinkNode newNode = new LinkNode(curr, null);
 		
-		// throw exceptions for preconditions
-		
 		if (start == null) { // Insert as list's first node
 			start = newNode;
 			end = newNode;
@@ -122,8 +120,7 @@ public class SinglyLinkedList
 	 */
 	public Currency removeCurrency(int i)
 	{
-		// any preconditions?? like if the list was empty or smth
-		if (i < 0 || i >= count || start == null) { // if or curr list is empty
+		if (i < 0 || i >= count || start == null) { // if curr list is empty
 			return null;
 		} else if (i == 0) { // if removing first node
 			Currency startCurr = start.getData();
@@ -134,6 +131,10 @@ public class SinglyLinkedList
 	    	}
 			return startCurr;
 		} else { // remove from middle or end of list
+			
+			// better way to implement remove from middle?
+			// have to add case if it's ending tail node
+			
 			LinkNode prevNode = start;
 			LinkNode nextNode = start.getNext();
 			
@@ -152,23 +153,37 @@ public class SinglyLinkedList
 	
 	/*
 	 * findCurrency method which takes a Currency object as parameter 
-	 * and returns the node index at which the Currency is found in the list.
+	 * and returns the node index at which the Currency is found in the
+     * list and returns -1 if not found.
+	 * 
 	 */
 	public int findCurrency(Currency curr)
 	{
 		int i = 0;
 		LinkNode currNode = start;
 		
-		while (currNode.getData() != curr) {
-			currNode.setNext(currNode.getNext());
+		if (curr == null) {
+			return -1;
+		}
+		
+		while (currNode != null) {
+			if (currNode.getData() == curr) {
+				return i;
+			}
+			
+			currNode = currNode.getNext();
 			i++;
 		}
 		
-		return i;
+		return -1;
 	}
 	
 	public Currency getCurrency(int i)
 	{
+		if (i < 0 || i >= count) {
+			return null;
+		}
+		
 		LinkNode currNode = start;
 
 		for (int j = 0; j < i; j++) {
