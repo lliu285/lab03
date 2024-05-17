@@ -13,20 +13,6 @@ public class SinglyLinkedList
 		end = null;
 	}
 	
-	public int getCount()
-	{
-		return count;
-	}
-	
-	public LinkNode getStart()
-	{
-		return start;
-	}
-	
-	public LinkNode getEnd()
-	{
-		return end;
-	}
 	
 	public int createList() // change return type later, not rly sure what it does
 	{
@@ -36,6 +22,30 @@ public class SinglyLinkedList
 	public void destroyList() // change return type later, not rly sure what it does
 	{
 		
+	}
+	
+	/*
+	 * 
+	 */
+	public int getCount()
+	{
+		return count;
+	}
+	
+	/*
+	 * 
+	 */
+	public LinkNode getStart()
+	{
+		return start;
+	}
+	
+	/*
+	 * 
+	 */
+	public LinkNode getEnd()
+	{
+		return end;
 	}
 	
 	/*
@@ -66,7 +76,7 @@ public class SinglyLinkedList
 				currNode = currNode.getNext();
 			}
 			
-			newNode.setNext(currNode.getNext());
+			newNode.setNext(currNode.getNext()); // have to fix this
 			currNode.setNext(newNode);
 		}
 		
@@ -79,28 +89,24 @@ public class SinglyLinkedList
 	 */
 	public Currency removeCurrency(Currency curr)
 	{
-		if (curr == null || start == null) { // if or curr list is empty
+		if (curr == null || start == null) { // if curr or list is empty
 			return null;
-		} else {
-			if (start.getData() == curr) { // if curr is at start of the list
-		    	start = start.getNext();
-		    	count--;
-		    	if (count == 0) { // if there's only one node
-		        	end = null;
-		    	}
-
-		    	return curr;
+		} else if (start.getData() == curr) { // if curr is at start of the list
+		    start = start.getNext();
+		    count--;
+		    if (count == 0) { // if there's only one node
+		        end = null;
 		    }
-
+		    return curr;
+		} else {
 			LinkNode prevNode = start;
 			LinkNode nextNode = prevNode.getNext();
+			
 		    while (nextNode != null) {
-		        if (nextNode.getData() == curr) {
+		        if (nextNode.getData() == curr) {      	
 		            prevNode.setNext(nextNode.getNext());
 		            count--;
-		            if (count == 0) {
-		                end = null;
-		            } else if (nextNode == end) {
+		            if (nextNode == end) { // if removing last node
 		                end = prevNode;
 		            }
 
@@ -166,7 +172,7 @@ public class SinglyLinkedList
 			return -1;
 		}
 		
-		while (currNode != null) {
+		while (currNode != null) { // reference or actual value??
 			if (currNode.getData() == curr) {
 				return i;
 			}
