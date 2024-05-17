@@ -39,6 +39,10 @@ public class SinglyLinkedList
 	}
 	
 	/*
+	 * Preconditions:
+	 * curr - Cannot be null
+	 * i - Cannot be negative
+	 * 
 	 * addCurrency method which takes a Currency object 
 	 * and a node index value as parameters to add the Currency to the list at that index.
 	 */
@@ -46,10 +50,12 @@ public class SinglyLinkedList
 	{
 		LinkNode newNode = new LinkNode(curr, null);
 		
+		// throw exceptions for preconditions
+		
 		if (start == null) { // Insert as list's first node
 			start = newNode;
 			end = newNode;
-		} else if (start != null && i == count) { // Insert after list's tail node
+		} else if (i+1 > count) { // Insert after list's tail node
 			end.setNext(newNode);
 			end = newNode; 
 		} else { // Insert in middle of list
@@ -76,13 +82,22 @@ public class SinglyLinkedList
 	public Currency removeCurrency(Currency curr)
 	{
 		// any preconditions?? like if the list was empty or smth
+		if (curr == null || start == null) {
+			return null;
+		}
 		
+		int i = 1;
 		LinkNode prevNode = start;
 		LinkNode nextNode = start.getNext();
 		
 		while (!prevNode.getNext().getData().isEqual(curr)) {
 			prevNode = prevNode.getNext();
 			nextNode = nextNode.getNext();
+			i++;
+			
+			if (i == count) {
+				return null;
+			}
 		}
 		
 		prevNode.setNext(nextNode.getNext());

@@ -4,7 +4,7 @@ public class Stack extends SinglyLinkedList
 {
 	public Stack()
 	{
-		
+		super();
 	}
 	
 	public void createStack() // optional, change return type later
@@ -12,26 +12,27 @@ public class Stack extends SinglyLinkedList
 		
 	}
 	
+	/*
+	 * start = top of stack
+	 */
 	public void push(Currency curr)
 	{
-		
+		super.addCurrency(curr, 0);
 	}
 	
 	public Currency pop()
 	{
-		Currency st = new Dollar();
-		return st;
+		return super.removeCurrency(0);
 	}
 	
 	public Currency peek()
 	{
-		Currency st = new Dollar();
-		return st;
+		return super.getCurrency(0);
 	}
 	
 	public String printStack()
 	{
-		return "";
+		return super.printList();
 	}
 	
 	public void destroyStack() // optional

@@ -1,7 +1,7 @@
 package lab03;
 
 /*
- * Name(s): Lucia Liu
+ * Name(s): Lucia Liu, Nithya Ramasubramonian
  * Due date: 5/18/24
  * Purpose:
  */
