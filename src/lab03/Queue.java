@@ -1,10 +1,12 @@
 package lab03;
 
-public class Queue extends SinglyLinkedList
+public class Queue 
 {
+	private SinglyLinkedList list;
+	
 	public Queue()
 	{
-		
+		list = new SinglyLinkedList();
 	}
 	
 	public void createQueue() // optional, change return type later
@@ -12,15 +14,20 @@ public class Queue extends SinglyLinkedList
 		
 	}
 	
+	/*
+	 * list's head node = queue's front
+	 * list's tail node = queue's end
+	 * 
+	 * takes a Currency object as parameter and adds it to the end of the queue
+	 */
 	public void enqueue(Currency curr)
 	{
-		
+		list.addCurrency(curr, list.getCount());
 	}
 	
 	public Currency dequeue()
 	{
-		Currency curr = new Dollar();
-		return curr;
+		return list.removeCurrency(0);
 	}
 	
 	public Currency peekFront()

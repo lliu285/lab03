@@ -1,10 +1,12 @@
 package lab03;
 
-public class Stack extends SinglyLinkedList
+public class Stack
 {
+	private SinglyLinkedList list;
+	
 	public Stack()
 	{
-		super();
+		list = new SinglyLinkedList();
 	}
 	
 	public void createStack() // optional, change return type later
@@ -17,22 +19,22 @@ public class Stack extends SinglyLinkedList
 	 */
 	public void push(Currency curr)
 	{
-		super.addCurrency(curr, 0);
+		list.addCurrency(curr, 0);
 	}
 	
 	public Currency pop()
 	{
-		return super.removeCurrency(0);
+		return list.removeCurrency(0);
 	}
 	
 	public Currency peek()
 	{
-		return super.getCurrency(0);
+		return list.getCurrency(0);
 	}
 	
 	public String printStack()
 	{
-		return super.printList();
+		return list.printList();
 	}
 	
 	public void destroyStack() // optional
