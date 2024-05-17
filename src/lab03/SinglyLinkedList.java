@@ -28,12 +28,12 @@ public class SinglyLinkedList
 		return end;
 	}
 	
-	public int createList() // change return type later
+	public int createList() // change return type later, not rly sure what it does
 	{
 		return 0; 
 	}
 	
-	public void destroyList() // change return type later
+	public void destroyList() // change return type later, not rly sure what it does
 	{
 		
 	}
@@ -81,29 +81,39 @@ public class SinglyLinkedList
 	 */
 	public Currency removeCurrency(Currency curr)
 	{
-		// any preconditions?? like if the list was empty or smth
-		if (curr == null || start == null) {
+		if (curr == null || start == null) { // if or curr list is empty
 			return null;
-		}
-		
-		int i = 1;
-		LinkNode prevNode = start;
-		LinkNode nextNode = start.getNext();
-		
-		while (!prevNode.getNext().getData().isEqual(curr)) {
-			prevNode = prevNode.getNext();
-			nextNode = nextNode.getNext();
-			i++;
-			
-			if (i == count) {
-				return null;
-			}
-		}
-		
-		prevNode.setNext(nextNode.getNext());
-		count--;
+		} else {
+			if (start.getData() == curr) { // if curr is at start of the list
+		    	start = start.getNext();
+		    	count--;
+		    	if (count == 0) { // if there's only one node
+		        	end = null;
+		    	}
 
-		return curr;
+		    	return curr;
+		    }
+
+			LinkNode prevNode = start;
+			LinkNode nextNode = prevNode.getNext();
+		    while (nextNode != null) {
+		        if (nextNode.getData() == curr) {
+		            prevNode.setNext(nextNode.getNext());
+		            count--;
+		            if (count == 0) {
+		                end = null;
+		            } else if (nextNode == end) {
+		                end = prevNode;
+		            }
+
+		            return curr;
+		        } else {
+		            prevNode = nextNode;
+		            nextNode = prevNode.getNext();
+		        }
+		    }
+		    return null;
+		}
 	}
 	
 	/*
@@ -113,20 +123,31 @@ public class SinglyLinkedList
 	public Currency removeCurrency(int i)
 	{
 		// any preconditions?? like if the list was empty or smth
-		
-		LinkNode prevNode = start;
-		LinkNode nextNode = start.getNext();
-		
-		for (int j = 0; j < i-1; j++) {
-			prevNode = prevNode.getNext();
-			nextNode = nextNode.getNext();
+		if (i < 0 || i >= count || start == null) { // if or curr list is empty
+			return null;
+		} else if (i == 0) { // if removing first node
+			Currency startCurr = start.getData();
+			start = start.getNext();
+			count--;
+			if (count == 0) { // if there's only one node
+	        	end = null;
+	    	}
+			return startCurr;
+		} else { // remove from middle or end of list
+			LinkNode prevNode = start;
+			LinkNode nextNode = start.getNext();
+			
+			for (int j = 0; j < i-1; j++) {
+				prevNode = prevNode.getNext();
+				nextNode = nextNode.getNext();
+			}
+
+			Currency curr = prevNode.getNext().getData();
+			prevNode.setNext(nextNode.getNext());
+			count--;
+
+			return curr;
 		}
-
-		Currency curr = prevNode.getNext().getData();
-		prevNode.setNext(nextNode.getNext());
-		count--;
-
-		return curr;
 	}
 	
 	/*
@@ -138,7 +159,7 @@ public class SinglyLinkedList
 		int i = 0;
 		LinkNode currNode = start;
 		
-		while (!currNode.getData().isEqual(curr)) {
+		while (currNode.getData() != curr) {
 			currNode.setNext(currNode.getNext());
 			i++;
 		}
