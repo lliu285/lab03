@@ -144,12 +144,15 @@ public class SinglyLinkedList
 	
 	public String printList()
 	{
+		String nodeList = "";
+		LinkNode currNode = start;
+		
 		for (int i = 0; i < count; i++) {
-			
+			nodeList += currNode.getData().toString() + "\t";
+			currNode = currNode.getNext();
 		}
 		
-		
-		return "";
+		return nodeList;
 	}
 	
 	public boolean isListEmpty()
