@@ -9,7 +9,7 @@ package lab03;
 
 public class LinkNode 
 {
-    private Currency data; // pointer/reference??
+    private Currency data;
     private LinkNode next;
     
     public LinkNode()

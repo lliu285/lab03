@@ -17,31 +17,62 @@ public class Queue
     }
     
     /*
-     * list's head node = queue's front
-     * list's tail node = queue's end
+     * Add a Currency object to the end of the queue.
      * 
-     * takes a Currency object as parameter and adds it to the end of the queue
+     * Pre:
+     * curr - The Currency object to be enqueued.
+     *
+     * Post:
+     * If curr is not null, it has been added to the end of the queue.
+     * If curr is null, an exception is thrown.
      */
     public void enqueue(Currency curr)
     {
         list.addCurrency(curr, list.getCount());
     }
     
+    /*
+     * Remove and return the Currency object from the beginning of the queue.
+     * 
+     * Post:
+     * If the queue is not empty, the Currency object at the beginning of the queue is removed and returned.
+     * If the queue is empty, a null is returned.
+     */
     public Currency dequeue()
     {
         return list.removeCurrency(0);
     }
     
+    /*
+     * Return the Currency object from the beginning of the queue.
+     * 
+     * Post:
+     * If the queue is not empty, the Currency object at the beginning of the queue is returned.
+     * If the queue is empty, a null is returned.
+     */
     public Currency peekFront()
     {
         return list.getCurrency(0);
     }
     
+    /*
+     * Return the Currency object from the end of the queue.
+     * 
+     * Post:
+     * If the queue is not empty, the Currency object at the end of the queue is returned.
+     * If the queue is empty, a null is returned.
+     */
     public Currency peekRear()
     {
         return list.getCurrency(list.getCount() - 1);
     }
     
+    /*
+    * Print the Currency objects in the queue in the order from the beginning to the end of the queue.
+    *
+    * Post:
+    * Returns a string containing all the Currency objects in the queue.
+    */
     public String printQueue()
     {
         return list.printList();
