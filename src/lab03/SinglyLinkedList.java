@@ -1,5 +1,12 @@
 package lab03;
 
+/*
+ * Name(s): Lucia Liu, Nithya Ramasubramonian
+ * Due date: 5/18/24
+ * Purpose: The purpose of this lab was to help us understand the application of linked data structures 
+ * by implementing a link-based list and its associated ADT's (abstract data types).
+ */
+
 public class SinglyLinkedList 
 {
     private int count; 
@@ -89,16 +96,6 @@ public class SinglyLinkedList
         }
         count++;
     }
-    
-    /*
-     * note: removing Currency with the same data, not the same reference (clarified w/ prof)
-     * In the list: 2.40  5.43  2.33
-     * you can remove 5.43 by calling removeCurrency(new Dollar(5.43)
-     * 
-     * 
-     * removeCurrency method which takes a Currency object as parameter 
-     * and removes that Currency object from the list and may return a copy of the Currency.
-     */
     
     /*
      * Remove the specified Currency object (with same monetary value, doesn't have to be same reference) 

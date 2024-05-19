@@ -1,7 +1,7 @@
 package lab03;
 
 /*
- * Lab #2
+ * Lab 2/3
  * Names: Lucia Liu, Nithya Ramasubramonian
  * Due date: 5/8/24
  * Purpose: The purpose of this lab is to practice Inheritance and Polymorphism through a Currency modeling scenario.
