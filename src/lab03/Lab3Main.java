@@ -86,7 +86,7 @@ public class Lab3Main
         stack.pop();
         
         // D
-        System.out.println(stack.printStack());
+        System.out.println("Stack content: " + stack.printStack());
 
         // E
         for (int i = 0; i < 5; i++) {
@@ -98,7 +98,7 @@ public class Lab3Main
         stack.pop();
 
         // G
-        System.out.println(stack.printStack());
+        System.out.println("Stack content: " + stack.printStack());
         
         System.out.println("\nQueue test ---------------------------------------------------------- ");
         Queue queue = new Queue();

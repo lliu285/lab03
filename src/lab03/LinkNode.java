@@ -26,7 +26,7 @@ public class LinkNode
     
     /*
      * Post:
-     * Return the Currency data of the node.
+     * Return the data attribute of the node.
      */
     public Currency getData()
     {
@@ -36,11 +36,10 @@ public class LinkNode
     
     /*
      * Pre:
-     * data - Currency of new data
-     * can it be null??
+     * data - the Currency value of data attribute to set.
      * 
      * Post:
-     * 
+     * The data attribute has been set.
      */
     public void setData(Currency data)
     {
@@ -48,7 +47,8 @@ public class LinkNode
     }
     
     /*
-     * 
+     * Post:
+     * Returns the next LinkNode attribute.
      */
     public LinkNode getNext()
     {
@@ -56,7 +56,11 @@ public class LinkNode
     }
     
     /*
+     * Pre:
+     * next - the LinkNode value of next attribute to be set.
      * 
+     * Post:
+     * The next LinkNode attribute has been set.
      */
     public void setNext(LinkNode next)
     {
