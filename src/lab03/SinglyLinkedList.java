@@ -69,6 +69,21 @@ public class SinglyLinkedList
      */
     public void addCurrency(Currency curr, int i)
     {
+    	/* 
+    	Pseudocode:
+    	Check if currency is null or position is negative
+        Make new node with currency
+        If list is empty
+            start and end = new node
+        Else if adding at start
+            Put new node before current start
+        Else if adding at end or further
+            Attach new node after current end
+        Else
+            Insert new node at position
+        Increase count by 1
+    	 */
+    	
     	if (curr == null) {
     		throw new IllegalArgumentException("Currency is null");
     	} else if (i < 0) {
@@ -110,6 +125,18 @@ public class SinglyLinkedList
      */
     public Currency removeCurrency(Currency curr)
     {
+    	/* 
+    	Pseudocode:
+    	If list empty or currency is null
+            Return null
+        If first node has the currency
+            Remove first node
+        Else
+            Find and remove currency in list
+        Decrease count by 1 if removed
+        Return currency if found, else null
+    	 */
+    	
     	Currency foundCurr;
     	
         if (curr == null || start == null) { // if curr or list is empty
@@ -156,6 +183,17 @@ public class SinglyLinkedList
      */
     public Currency removeCurrency(int i)
     {
+    	/*
+    	Pseudocode:
+    	Check position is not negative or that list is not empty
+        If removing first node
+            Remove first node
+        Else
+            Find node at position and remove
+        Adjust end if needed
+        Decrease count and return removed currency
+    	 */
+    	
     	if (i < 0 || i >= count || start == null) { // if curr list is empty
             return null;
         } else if (i == 0) { // if removing first node
@@ -194,6 +232,13 @@ public class SinglyLinkedList
      */
     public int findCurrency(Currency curr)
     {
+    	/*
+    	Pseudocode:
+    	Start from first node
+        Look for currency in list
+        Return position if found, else -1
+    	 */
+    	
         int i = 0;
         LinkNode currNode = start;
         
@@ -225,6 +270,13 @@ public class SinglyLinkedList
      */
     public Currency getCurrency(int i)
     {
+    	/*
+    	Pseudocode:
+    	Check that position is not negative or out of bounds
+        Find currency at that position
+        Return currency
+    	 */
+    	
         if (i < 0 || i >= count) {
             return null;
         }

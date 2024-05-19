@@ -57,7 +57,7 @@ public class Lab3Main
         System.out.println("List content: " + list.printList());
         
         // E
-        for (int i = 7; i < 11; i++) {
+        for (int i = 8; i < 12; i++) {
         	list.addCurrency(currencyArray[i], i % 5);
         }
         
