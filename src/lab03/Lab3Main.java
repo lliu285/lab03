@@ -12,7 +12,7 @@ public class Lab3Main
         currencyArray[3] = new Dollar(68.99);
         currencyArray[4] = new Dollar(111.22);
         currencyArray[5] = new Dollar(44.55);
-        currencyArray[6] = new Dollar(77.77); // item 7
+        currencyArray[6] = new Dollar(77.77); 
         currencyArray[7] = new Dollar(18.36);
         currencyArray[8] = new Dollar(543.21); 
         currencyArray[9] = new Dollar(20.21);
@@ -27,44 +27,49 @@ public class Lab3Main
         currencyArray[18] = new Dollar(251.00);
         currencyArray[19] = new Dollar(151.00);
        
+        System.out.println("Hello! This is the start of the ADT demo done by Lucia Liu and Nithya Ramasubramonian.");
+        
+        System.out.println("\nSinglyLinkedList test ---------------------------------------------------------- ");
+        
+        // A
         SinglyLinkedList list = new SinglyLinkedList();
         
         for (int i = 6; i >= 0; i--) {
         	list.addCurrency(currencyArray[i], list.getCount());
         }
         
-        System.out.println("SinglyLinkedList test ---------------------------------------------------------- ");
-        
-        //System.out.println(list.printList());
-        System.out.println("$87.43 has an index of (-1 if not found): " + list.findCurrency(new Dollar(87.43)));
-        System.out.println("$44.56 has an index of (-1 if not found): " + list.findCurrency(new Dollar(44.56)));
+        // B
+        System.out.println("Index of $87.43 (-1 if not found): " + list.findCurrency(new Dollar(87.43)));
+        System.out.println("Index of $44.56 (-1 if not found): " + list.findCurrency(new Dollar(44.56)));
 
+        // C
         list.removeCurrency(new Dollar(111.22));
         list.removeCurrency(2);
         
-        System.out.println(list.printList());
+        // D
+        System.out.println("List content: " + list.printList());
         
+        // E
         for (int i = 7; i < 11; i++) {
         	list.addCurrency(currencyArray[i], i % 5);
         }
         
-        System.out.println(list.printList());
-        
+        // F
         list.removeCurrency(list.countCurrency() % 6);
         list.removeCurrency(list.countCurrency() / 7);
-        System.out.println(list.printList());
         
+        // G
+        System.out.println("List content: " + list.printList());
         
         System.out.println("\nStack test ---------------------------------------------------------- ");
-        Stack stack = new Stack();
 
         // A
+        Stack stack = new Stack();
+        
         for (int i = 13; i < 20; i++) {
             stack.push(currencyArray[i]);
         }
         
-        //System.out.println(stack.printStack());
-
         // B
         System.out.println("Top of stack: " + stack.peek());
 
@@ -88,8 +93,6 @@ public class Lab3Main
         // G
         System.out.println(stack.printStack());
         
-        
-
         System.out.println("\nQueue test ---------------------------------------------------------- ");
         Queue queue = new Queue();
 

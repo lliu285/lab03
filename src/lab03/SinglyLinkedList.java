@@ -14,7 +14,10 @@ public class SinglyLinkedList
     }
     
     /*
+     * Return number of elements in the list.
      * 
+     * Post: 
+     * Return number of elements as an integer
      */
     public int getCount()
     {
@@ -22,7 +25,11 @@ public class SinglyLinkedList
     }
     
     /*
-     * 
+     * Return the first node of the list.
+     *
+     * Post: 
+     * Return the first node of the list if the list is not empty.
+     * Return null if the list is empty.
      */
     public LinkNode getStart()
     {
@@ -30,7 +37,11 @@ public class SinglyLinkedList
     }
     
     /*
-     * 
+     * Return the last node of the list.
+     *
+     * Post: 
+     * Return the last node of the list if the list is not empty.
+     * Return null if the list is empty.
      */
     public LinkNode getEnd()
     {
@@ -38,20 +49,25 @@ public class SinglyLinkedList
     }
     
     /*
-     * Add currency at the index specified.
-     * For example:
+     * Add a Currency object into the list at the given index.
      * 
-     * 2.40  5.43  2.33
+     * Pre:
+     * curr - the reference to the Currency object. Cannot be null.
+     * i    - the index at which the curr is added to the list. Cannot be negative.
      * 
-     * addCurrency(3.88, 1) results in:
-     * 2.40  3.88  5.43  2.33
-     * 
-     * 
-     * addCurrency method which takes a Currency object 
-     * and a node index value as parameters to add the Currency to the list at that index.
+     * Post:
+     * An exception will be thrown if curr is null or if i negative.
+     * If i is 0, the curr is added to the start of the list.
+     * If i is equal to or greater than the number of elements n the list, the curr is added at the end of the list.
      */
     public void addCurrency(Currency curr, int i)
     {
+    	if (curr == null) {
+    		throw new IllegalArgumentException("Currency is null");
+    	} else if (i < 0) {
+    		throw new IllegalArgumentException("Index is negative");
+    	}
+    	
         LinkNode newNode = new LinkNode(curr, null);
         
         if (start == null) { // Insert as list's first node
@@ -65,12 +81,10 @@ public class SinglyLinkedList
             start = newNode;
         } else { // Insert in middle of list
             LinkNode currNode = start;
-            
             for (int j = 0; j < i-1; j++) {
                 currNode = currNode.getNext();
             }
-            
-            newNode.setNext(currNode.getNext()); // have to fix this
+            newNode.setNext(currNode.getNext());
             currNode.setNext(newNode);
         }
         count++;
@@ -85,30 +99,45 @@ public class SinglyLinkedList
      * removeCurrency method which takes a Currency object as parameter 
      * and removes that Currency object from the list and may return a copy of the Currency.
      */
+    
+    /*
+     * Remove the specified Currency object (with same monetary value, doesn't have to be same reference) 
+     * from the list and return the Currency that was removed.
+     *
+     * Pre:
+     * curr - the Currency object to be removed.
+     * 
+     * Post:
+     * If the curr is found in the list, the corresponding Currency object is removed from the list and returned.
+     * If the curr is not found, a null is returned.
+     */
     public Currency removeCurrency(Currency curr)
     {
+    	Currency foundCurr;
+    	
         if (curr == null || start == null) { // if curr or list is empty
             return null;
         } else if (start.getData().isEqual(curr)) { // if curr is at start of the list
+        	foundCurr = start.getData();
             start = start.getNext();
             count--;
             if (count == 0) { // if there's only one node
                 end = null;
             }
-            return curr;
+            return foundCurr;
         } else {
             LinkNode prevNode = start;
             LinkNode nextNode = prevNode.getNext();
             
             while (nextNode != null) {
-            	if (nextNode.getData().isEqual(curr)) {     
+            	if (nextNode.getData().isEqual(curr)) {    
+            		foundCurr = nextNode.getData();
                 	prevNode.setNext(nextNode.getNext());
                     count--;
                     if (nextNode == end) { // if removing last node
                         end = prevNode;
                     }
-
-                    return curr;
+                    return foundCurr;
                 } else {
                     prevNode = nextNode;
                     nextNode = prevNode.getNext();
@@ -119,12 +148,18 @@ public class SinglyLinkedList
     }
     
     /*
-     * removeCurrency overload method which takes a node index as parameter 
-     * and removes the Currency object at that index and may return a copy of the Currency
+     * Remove and return the Currency object from the list at the given index 
+     *
+     * Pre:
+     * i - the index at which the Currency object will be removed.
+     * 
+     * Post:
+     * If i is negative or equal to or greater than the number of elements in the list, a null is returned.
+     * Otherwise the Currency object at the index i is removed from the list and is returned.
      */
     public Currency removeCurrency(int i)
     {
-        if (i < 0 || i >= count || start == null) { // if curr list is empty
+    	if (i < 0 || i >= count || start == null) { // if curr list is empty
             return null;
         } else if (i == 0) { // if removing first node
             Currency startCurr = start.getData();
@@ -151,12 +186,14 @@ public class SinglyLinkedList
     }
     
     /*
-     * note: finds the currency object with the same monetary value, not the same reference
+     * Find a Currency object in the list and return its index in the list.
      * 
-     * findCurrency method which takes a Currency object as parameter 
-     * and returns the node index at which the Currency is found in the
-     * list and returns -1 if not found.
+     * Pre:
+     * curr - the Currency object to be found.
      * 
+     * Post:
+     * Returns -1 if the curr is not found.
+     * Returns a non-negative integer indicating the index of the curr if the curr is found in the list.
      */
     public int findCurrency(Currency curr)
     {
@@ -179,6 +216,16 @@ public class SinglyLinkedList
         return -1;
     }
     
+    /*
+     * Get the Currency object at the given index.
+     *
+     * Pre:
+     * i - the index at which the Currency object will be returned.
+     * 
+     * Post:
+     * Returns null if the index i is out of range.
+     * Returns the Currency object at the index i if i is in the range.
+     */
     public Currency getCurrency(int i)
     {
         if (i < 0 || i >= count) {
@@ -194,6 +241,12 @@ public class SinglyLinkedList
         return currNode.getData();
     }
     
+    /*
+     * Print the Currency objects in the list in the order from the start to the end of the list.
+     * 
+     * Post:
+     * Returns a string containing all the Currency objects in the list.
+     */
     public String printList()
     {
         String nodeList = "";
@@ -207,11 +260,24 @@ public class SinglyLinkedList
         return nodeList;
     }
     
+    /*
+    * Check if the list is empty.
+    * 
+    * Post:
+    * Returns true if the list is empty.
+    * Returns false if the list is not empty.
+    */
     public boolean isListEmpty()
     {
         return start == null;
     }
     
+    /*
+     * Return number of elements in the list.
+     * 
+     * Post: 
+     * Return number of elements as an integer
+     */
     public int countCurrency()
     {
         return count;

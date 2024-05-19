@@ -3,7 +3,8 @@ package lab03;
 /*
  * Name(s): Lucia Liu, Nithya Ramasubramonian
  * Due date: 5/18/24
- * Purpose:
+ * Purpose: The purpose of this lab was to help us understand the application of linked data structures 
+ * by implementing a link-based list and its associated ADT's (abstract data types).
  */
 
 public class LinkNode 
